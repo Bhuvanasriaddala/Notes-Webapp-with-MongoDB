@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black flex justify-center items-center h-screen">
+    <div class="bg-zinc-900   w-6/12 lg:w-4/12 h-1/2 min-h-[200px] p-4 rounded-md sm:text-lg md:text-xl lg:text-2xl text-zinc-400">
+        <form action="/update/<%=note._id%>" method="post" class="p-4 m-2">
+            <input  class="block px-5 py-3 m-2 bg-zinc-900  rounded-md outline-none w-full"  type="text" placeholder="Previous Title" name="title" value="<%=note.title%>">
+             <textarea class="block px-5 py-3 m-2 bg-zinc-900  rounded-md outline-none w-full"name="description" ><%=note.description%></textarea>
+            <input type="submit" value="Update" class=" mt-2 bg-green-900 p-2 m-2 ml-4 rounded-md" >
+        </form>
+    </div>
+</body>
+</html>

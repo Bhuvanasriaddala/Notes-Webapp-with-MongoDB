@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-black text-zinc-300">
+    
+    <div class="title  text-zinc-400 text-center sm:text-xl md:text-2xl lg:text-3xl"><h1 class="pt-4">Take down a Note!</h1></div>
+    <div class="form p-20 ">
+    <form action="/create" method="post">
+        <input  class="block px-5 py-3 bg-zinc-900  rounded-md outline-none w-full"  type="text" placeholder="title..." name="title">
+        <textarea class="block px-5 py-3 bg-zinc-900 my-5 resize-none  size-50  rounded-md outline-none w-full"  placeholder="write your task details" name="description"></textarea>
+        <input type="submit" value="create Note" class=" mt-2 bg-green-900 p-2 m-2 rounded-md">
+    </form>
+
+    </div>
+
+    <div class="task flex flex-wrap gap-4 p-20">
+        <%if(notes.length>0){%>
+            <%notes.forEach((note)=>{%>
+              <div class="task w-72 px-3 py-4 mx-4 my-4 rounded-md bg-zinc-900">
+                <h1 class="sm:text-md md:text-lg lg:text-xl tracking-tighter"><%=note.title%></h1>
+                <div class="flex justify-between mt-2">
+                    <a class="text-green-900 sm:text-sm md:text-md lg:text-lg" href="/read/<%=note._id%>">Read More</a>
+                    <a class="sm:text-sm md:text-md lg:text-lg text-zinc-700" href="/delete/<%=note._id%>">Delete</a>
+                    <a class="sm:text-sm md:text-md lg:text-lg text-zinc-700" href="/edit/<%=note._id%>">edit</a>
+                </div>
+             </div> 
+            <%})%>
+        
+        <%}else{%>
+            <div class="notask text-center w-full text-zinc-500"><h3 class=" sm:text-2xl md:text-4xl lg:text-5xl  text-center">No Tasks Yet!</h3> </div>
+        <%}%>
+        
+
+    </div>
+    
+</body>
+</html>
