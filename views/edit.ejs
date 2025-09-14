@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Note</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+   
+</head>
+
+<body class="bg-gradient-to-br from-white via-gray-100 to-gray-200 text-gray-900
+         dark:from-black dark:via-zinc-900 dark:to-zinc-800 dark:text-zinc-300
+         flex justify-center items-center min-h-screen p-4 transition-colors duration-500">
+
+    <div class="bg-white/90 dark:bg-zinc-950/80 backdrop-blur-md w-full max-w-lg p-6 sm:p-8 rounded-2xl shadow-2xl 
+           text-gray-900 dark:text-zinc-300 border border-gray-300 dark:border-zinc-800 fade-in">
+
+        <!-- Heading -->
+        <h2 class="text-2xl sm:text-3xl font-bold text-center mb-6 text-gray-900 dark:text-white">
+            ✏️ Edit Your Note
+        </h2>
+
+        <!-- Form -->
+        <form action="/update/<%=note._id%>" method="post" class="space-y-4">
+            <input class="block px-5 py-3 bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-700 
+               rounded-md outline-none w-full glow text-gray-900 dark:text-zinc-200" type="text"
+                placeholder="Enter Title" name="title" value="<%= note.title %>">
+
+            <textarea class="block px-5 py-3 bg-white dark:bg-zinc-900 border border-gray-300 dark:border-zinc-700 
+               rounded-md outline-none w-full glow text-gray-900 dark:text-zinc-200 resize-none" rows="6"
+                placeholder="Write your note..." name="description"><%= note.description %></textarea>
+
+            <div class="flex justify-between items-center">
+                <a href="/index" class="px-5 py-2 rounded-lg bg-gray-400 hover:bg-gray-500 dark:bg-zinc-700 dark:hover:bg-zinc-600 
+                 text-white transition duration-200">
+                    ⬅ Cancel
+                </a>
+                <input type="submit" value="Update"
+                    class="btn-hover bg-green-600 hover:bg-green-500 text-white font-medium px-6 py-2 rounded-lg cursor-pointer transition duration-200">
+            </div>
+        </form>
+    </div>
+
+   
+</body>
+
+</html>

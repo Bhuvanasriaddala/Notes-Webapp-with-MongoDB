@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Enable Tailwind's dark mode with 'class' strategy
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    
+</head>
+
+<body
+    class="bg-gradient-to-br from-white via-gray-100 to-gray-200 text-gray-900 dark:from-black dark:via-zinc-900 dark:to-zinc-800 dark:text-zinc-300 min-h-screen transition-colors duration-500">
+
+    <!-- Navbar -->
+    <div
+        class="flex justify-between items-center px-6 py-4 bg-gray-200 dark:bg-zinc-950 shadow-lg sticky top-0 z-50 border-b border-gray-300 dark:border-zinc-800">
+
+        <h2
+            class="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-green-600 dark:text-green-400 animate-pulse hover:scale-105 transition duration-300">
+            Welcome, <%= user %>!
+        </h2>
+
+        <div class="flex items-center gap-6">
+           
+           
+
+            <!-- Logout Button -->
+            <a href="/logout"
+                class="bg-red-600 hover:bg-red-700 text-white font-medium px-5 py-2 rounded-xl shadow-md transition-all duration-300 transform hover:scale-105">
+                Logout
+            </a>
+        </div>
+    </div>
+
+    <!-- Page Title -->
+    <div class="title text-center sm:text-2xl md:text-3xl lg:text-4xl font-semibold drop-shadow-md">
+        <h1 class="pt-6 animate-fade-in">Take down a Note!</h1>
+    </div>
+
+    <!-- Create Note Form -->
+    <div class="form p-10 sm:p-16 md:p-20 flex justify-center">
+        <form action="/create" method="post"
+            class="w-full max-w-2xl bg-gray-100 dark:bg-zinc-900/80 backdrop-blur-md rounded-2xl shadow-lg p-8 space-y-6 transform transition duration-500 hover:scale-[1.01] border border-gray-300 dark:border-zinc-800">
+            <input
+                class="block px-5 py-3 bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 focus:border-green-500 rounded-lg outline-none w-full transition duration-300 text-gray-900 dark:text-zinc-200"
+                type="text" placeholder="Title..." name="title">
+
+            <textarea
+                class="block px-5 py-3 bg-white dark:bg-zinc-800 border border-gray-300 dark:border-zinc-700 focus:border-green-500 my-5 resize-none h-32 rounded-lg outline-none w-full transition duration-300 text-gray-900 dark:text-zinc-200"
+                placeholder="Write your task details..." name="description"></textarea>
+
+            <button type="submit"
+                class="w-full bg-green-600 hover:bg-green-700 text-white font-medium px-4 py-3 rounded-lg transition duration-300 transform hover:scale-105 shadow-md">
+                + Create Note
+            </button>
+        </form>
+    </div>
+
+    <!-- Notes Section -->
+    <div class="task flex flex-wrap gap-6 justify-center px-6 pb-20">
+        <% if(notes.length>0){ %>
+            <% notes.forEach((note)=>{ %>
+                <div
+                    class="task w-80 px-5 py-6 rounded-2xl bg-white dark:bg-zinc-900 shadow-lg border border-gray-300 dark:border-zinc-800 transform transition duration-300 hover:scale-105 hover:shadow-green-900/40">
+                    <h1
+                        class="sm:text-lg md:text-xl lg:text-2xl font-semibold tracking-tight text-gray-900 dark:text-zinc-200">
+                        <%= note.title %>
+                    </h1>
+                    <div class="flex justify-between mt-4 text-sm sm:text-md md:text-lg">
+                        <a class="text-green-600 dark:text-green-400 hover:text-green-700 dark:hover:text-green-500 transition"
+                            href="/read/<%=note._id%>">Read More</a>
+                        <a class="text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-500 transition"
+                            href="/delete/<%=note._id%>">Delete</a>
+                        <a class="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-500 transition"
+                            href="/edit/<%=note._id%>">Edit</a>
+                    </div>
+                </div>
+                <% }) %>
+                    <% } else { %>
+                        <div class="notask text-center w-full text-gray-500 dark:text-zinc-500">
+                            <h3 class="sm:text-2xl md:text-4xl lg:text-5xl font-bold animate-pulse">✨ No Tasks Yet!</h3>
+                        </div>
+                        <% } %>
+    </div>
+
+    
+</body>
+
+</html>
